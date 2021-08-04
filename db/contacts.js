@@ -17,10 +17,9 @@ const listContacts = async () => {
 const getContactById = async (contactId) => {
   try {
     const contacts = await listContacts();
-    console.log(contacts);
-    console.log(contactId);
+
     const contact = contacts.find((item) => item.id === contactId);
-    console.log(contact);
+
     if (!contact) {
       throw new Error(`Контакт с id=${contactId} не найден`);
     }
@@ -40,7 +39,9 @@ const removeContact = async (contactId) => {
     const newContacts = contacts.filter((item) => item.id !== contactId);
     await fs.writeFile(contactsPath, JSON.stringify(newContacts));
     return contacts[idx];
-  } catch (error) {}
+  } catch (error) {
+    throw error;
+  }
 };
 
 const addContact = async (name, email, phone) => {

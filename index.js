@@ -1,4 +1,3 @@
-// const argv = require("yargs").argv;
 const { Command } = require("commander");
 const program = new Command();
 program
@@ -22,7 +21,7 @@ const invokeAction = async ({ action, id, name, email, phone }) => {
         break;
 
       case "get":
-        const foundContact = await allFunctions.getContactById(id);
+        const foundContact = await allFunctions.getContactById(Number(id));
         console.log(foundContact);
         break;
 
@@ -32,7 +31,7 @@ const invokeAction = async ({ action, id, name, email, phone }) => {
         break;
 
       case "remove":
-        const removedContact = await allFunctions.removeContact(id);
+        const removedContact = await allFunctions.removeContact(Number(id));
         console.log(removedContact);
         break;
 
